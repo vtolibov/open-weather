@@ -1,4 +1,4 @@
-package uz.open.weather.service.impl;
+package uz.open.weather.service.impl.user;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

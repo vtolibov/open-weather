@@ -1,4 +1,4 @@
-package uz.open.weather.service.impl;
+package uz.open.weather.service.impl.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;

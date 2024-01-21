@@ -15,4 +15,5 @@ public class Weather {
     private String weatherDegree;
     private String description;
     private String timestamp;
+    private boolean status;
 }

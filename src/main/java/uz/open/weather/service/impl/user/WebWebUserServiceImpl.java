@@ -5,11 +5,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.open.weather.repository.WebUserRepository;
-import uz.open.weather.service.UserService;
+import uz.open.weather.service.WebUserService;
 
 @Service
 @RequiredArgsConstructor
-public class WebUserServiceImpl implements UserService {
+public class WebWebUserServiceImpl implements WebUserService {
 
     private final WebUserRepository webUserRepository;
 

@@ -18,10 +18,9 @@ public class Weather {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long weatherId;
     private String timezone;
-    private String lat;
-    private String lon;
-    private String weatherDegree;
+    private Double lat;
+    private Double lon;
+    private Double weatherDegree;
     private String description;
-    private String timestamp;
-    private boolean status;
+    private Long timestamp;
 }

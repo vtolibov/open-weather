@@ -1,0 +1,63 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-subscriptionsions
+      author: vtolibov
+      changes:
+        - createTable:
+            tableName: subscriptions
+            columns:
+              - column:
+                  name: subscription_id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: web_user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: web_user_id_fk
+              - column:
+                  name: location_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: location_id_kf
+              - column:
+                  name: location_name
+                  type: varchar(25)
+                  constraints:
+                    nullable: false
+              - addForeignKeyConstraint:
+                  baseColumnNames: web_user_id
+                  baseTableCatalogName: open_weather_cat
+                  baseTableName: web_user
+                  baseTableSchemaName: public
+                  constraintName: fk_web_user
+                  deferrable: true
+                  initiallyDeferred: true
+                  onDelete: CASCADE
+                  onUpdate: RESTRICT
+                  referencedColumnNames: web_user_id
+                  referencedTableCatalogName: open_weather_cat
+                  referencedTableName: subscriptions
+                  referencedTableSchemaName: public
+                  validate: true
+              - addForeignKeyConstraint:
+                  baseColumnNames: location_id
+                    baseTableCatalogName: open_weather_cat
+                    baseTableName: locations
+                    baseTableSchemaName: public
+                    constraintName: fk_location_subscription
+                    deferrable: true
+                    initiallyDeferred: true
+                    onDelete: CASCADE
+                    onUpdate: RESTRICT
+                    referencedColumnNames: location_id
+                    referencedTableCatalogName: open_weather_cat
+                    referencedTableName: subscriptions
+                    referencedTableSchemaName: public
+                    validate: true
+

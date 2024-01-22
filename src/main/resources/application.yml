@@ -1,29 +1,27 @@
+server:
+  port: 8585
+
 spring:
   liquibase:
     enabled: false
   jpa:
-    # Provide database platform that is being used
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      # New database is created when app starts and destroyed when app stops
       ddl-auto: none
-    # Show sql when spring data jpa performs query
-    show-sql: true
-    properties:
-      hibernate:
-        # Format queries
-        format_sql: true
   datasource:
-    # URL connection to database (spring-security is database name)
     url: jdbc:h2:mem:spring-security
-    # H2 SQL driver dependency
     driver-class-name: org.h2.Driver
     username: root
     password: 12345
 
-
-token:
-  signing:
+jwt:
+  token:
+    signing:
       key: open-weather
-server:
-  port: 8585
+
+open:
+  weather:
+    url: https://api.openweathermap.org
+    version: /data/3.0
+    ext: /onecall
+    api-key: ask_me_or_get_own_from_openweathermap.org

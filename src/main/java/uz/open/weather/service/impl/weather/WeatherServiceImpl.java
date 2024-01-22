@@ -20,7 +20,6 @@ public class WeatherServiceImpl implements WeatherService {
 
     @Override
     public <T> Flux<T> getCitiesList() {
-
         return (Flux<T>) repository.findAll();
     }
 

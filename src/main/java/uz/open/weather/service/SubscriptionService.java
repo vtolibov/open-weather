@@ -3,10 +3,11 @@ package uz.open.weather.service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-public interface SubscriptionService {
-    <T> Flux<T> getSubscriptionList();
+public interface SubscriptionService<T, ID> {
 
-    <ID> void deleteSubscription(ID subscriptionId);
+    Flux<T> getSubscriptionList(ID userId);
 
-    <T> Mono<T> subscribe(T body);
+    void deleteSubscription(Long subscriptionId);
+
+    Mono<T> subscribe(T body);
 }

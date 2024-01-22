@@ -1,6 +1,7 @@
 package uz.open.weather.config.app;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +15,9 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class RequestProcessor {
     private final WebClient webClient;
+
+    @Value("${}")
+    private String openWeatherUrl;
 
     public <RES, REQ> RES doGet(
             URI uri,

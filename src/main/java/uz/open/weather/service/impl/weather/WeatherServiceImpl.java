@@ -23,7 +23,6 @@ public class WeatherServiceImpl implements WeatherService {
         return (Flux<T>) repository.findAll();
     }
 
-
     @Override
     public <T, ID> Mono<T> subscribeToCity(ID locationId) {
         return null;

@@ -1,10 +1,12 @@
 spring:
+  liquibase:
+    enabled: false
   jpa:
     # Provide database platform that is being used
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       # New database is created when app starts and destroyed when app stops
-      ddl-auto: create
+      ddl-auto: none
     # Show sql when spring data jpa performs query
     show-sql: true
     properties:

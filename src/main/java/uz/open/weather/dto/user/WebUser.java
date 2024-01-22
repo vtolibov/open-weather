@@ -1,6 +1,5 @@
 package uz.open.weather.dto.user;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,20 +9,23 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import java.util.Collection;
 
+@Entity
 @Getter
 @Setter
-@ToString
 @Builder
-@AllArgsConstructor
+@ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class WebUser implements UserDetails {
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer webUserId;
     private String username;
     private String firstName;
     private String lastName;
-    private String email;
     private String password;
     @Enumerated(EnumType.STRING)
     private WebUserRole role;

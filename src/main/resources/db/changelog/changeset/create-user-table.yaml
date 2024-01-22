@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-user
+      author: vtolibov
+      changes:
+        - createTable:
+            tableName: web_user
+            columns:
+              - column:
+                  name: web_user_id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: firstName
+                  type: varchar(25)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lastname
+                  type: varchar(25)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: varchar(17)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: boolean
+                  constraints:
+                    nullable: false
+        - addUniqueConstraint:
+            catalogName: open_weather_cat
+            tableName: web_user
+            columnNames: username

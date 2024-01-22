@@ -1,7 +1,7 @@
 package uz.open.weather.service.impl.user;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.open.weather.repository.WebUserRepository;
@@ -9,13 +9,14 @@ import uz.open.weather.service.WebUserService;
 
 @Service
 @RequiredArgsConstructor
-public class WebWebUserServiceImpl implements WebUserService {
+public class WebUserServiceImpl implements WebUserService {
 
     private final WebUserRepository webUserRepository;
 
     @Override
-    public UserDetailsService userDetailsService() {
-        return username -> webUserRepository.findByUsername(username)
+    public UserDetails loadUserByUsername(String username) {
+        return webUserRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }
+

@@ -27,7 +27,7 @@ public class UserManagerServiceImpl implements UserManagementService<WebUser, Lo
 
     @Override
     public WebUser updateUser(WebUser user) {
-        if (user.getWebUserId() == null)
+        if (user.getId() == null)
             throw new UsernameNotFoundException("User not found");
         return userRepository.save(user);
     }

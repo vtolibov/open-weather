@@ -20,11 +20,10 @@ public class WebUserServiceImpl implements WebUserService {
 
         WebUser webUser = webUserRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return AuthUser.builder()
-                .username(webUser.getUsername())
-                .password(webUser.getPassword())
-                .role(webUser.getRole())
-                .build();
+        return new AuthUser()
+                .setUsername(webUser.getUsername())
+                .setPassword(webUser.getPassword())
+                .setRole(webUser.getRole());
     }
 }
 

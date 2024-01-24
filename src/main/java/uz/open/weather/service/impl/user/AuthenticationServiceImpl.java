@@ -22,20 +22,18 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JwtAuthenticationResponse signUp(WebUser request) {
-        WebUser user = WebUser.builder()
-                .username(request.getUsername())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
-                .build();
+        WebUser user = new WebUser()
+                .setUsername(request.getUsername())
+                .setPassword(passwordEncoder.encode(request.getPassword()))
+                .setRole(request.getRole());
         webUserRepository.save(user);
 
-        AuthUser authUser = AuthUser.builder()
-                .username(request.getUsername())
-                .password(request.getPassword())
-                .role(user.getRole())
-                .build();
+        AuthUser authUser = new AuthUser()
+                .setUsername(request.getUsername())
+                .setPassword(request.getPassword())
+                .setRole(user.getRole());
         var jwt = jwtService.generateToken(authUser);
-        return JwtAuthenticationResponse.builder().token(jwt).build();
+        return new JwtAuthenticationResponse(jwt);
     }
 
     @Override
@@ -44,11 +42,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         var user = webUserRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
-        AuthUser authUser = AuthUser.builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
-                .build();
+        AuthUser authUser = new AuthUser()
+                .setUsername(request.getUsername())
+                .setPassword(request.getPassword())
+                .setRole(user.getRole());
         var jwt = jwtService.generateToken(authUser);
-        return JwtAuthenticationResponse.builder().token(jwt).build();
+        return new JwtAuthenticationResponse(jwt);
     }
 }

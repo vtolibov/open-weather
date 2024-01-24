@@ -38,7 +38,7 @@ public class SubscriptionSocket {
             subscriptionStatus.addAndGet(subscriptionsRequest.getSubscribe());
             while (subscriptionStatus.get() == 1) {
                 subscriptionService.getSubscriptionList(subscriptionsRequest.getUserId())
-                        .flatMap(subscription -> subscriptionService.getSubscriptionInfoFromLocation(subscription.getSubscriptionId()))
+                        .flatMap(subscription -> subscriptionService.getSubscriptionInfoFromLocation(subscription.getId()))
                         .flatMap(Mono::just)
                         .subscribe(json -> {
                             try {

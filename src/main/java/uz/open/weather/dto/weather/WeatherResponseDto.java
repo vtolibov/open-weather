@@ -1,7 +1,12 @@
 package uz.open.weather.dto.weather;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Getter
+@Setter
 public class WeatherResponseDto {
     private Current current;
     private String timezone;
@@ -11,14 +16,16 @@ public class WeatherResponseDto {
     private List<HourlyItem> hourly;
     private List<MinutelyItem> minutely;
     private Object lat;
-
+    @Getter
+    @Setter
     public static class WeatherItem {
         private String icon;
         private String description;
         private String main;
         private Integer id;
     }
-
+    @Getter
+    @Setter
     public static class Temp {
         private Object min;
         private Object max;
@@ -27,7 +34,8 @@ public class WeatherResponseDto {
         private Object day;
         private Object morn;
     }
-
+    @Getter
+    @Setter
     public static class Current {
         private Integer sunrise;
         private Object temp;
@@ -44,12 +52,14 @@ public class WeatherResponseDto {
         private Integer humidity;
         private Object windSpeed;
     }
-
+    @Getter
+    @Setter
     public static class MinutelyItem {
         private Integer dt;
         private Integer precipitation;
     }
-
+    @Getter
+    @Setter
     public static class HourlyItem {
         private Double temp;
         private Integer visibility;
@@ -66,7 +76,8 @@ public class WeatherResponseDto {
         private Integer humidity;
         private Object windSpeed;
     }
-
+    @Getter
+    @Setter
     public static class DailyItem {
         private Integer moonset;
         private String summary;
@@ -89,7 +100,8 @@ public class WeatherResponseDto {
         private Object windSpeed;
         private Object rain;
     }
-
+    @Getter
+    @Setter
     public static class FeelsLike {
         private Object eve;
         private Object night;

@@ -1,15 +1,15 @@
 package uz.open.weather.dto.auth;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
+import lombok.experimental.Accessors;
 
-@Builder
+import java.io.Serializable;
+
 @Getter
 @Setter
-@ToString
-public class JwtAuthenticationResponse {
+@Accessors(chain = true)
+public class JwtAuthenticationResponse implements Serializable {
     private static final long serialVersionUID = 1250166508152483573L;
 
     private final String token;

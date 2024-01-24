@@ -1,4 +1,4 @@
-package uz.open.weather.dto.user;
+package uz.open.weather.model.user;
 
 public enum WebUserRole {
     ADMINISTRATOR,

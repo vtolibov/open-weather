@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
-import uz.open.weather.dto.weather.Weather;
+import uz.open.weather.model.weather.Weather;
 import uz.open.weather.service.WeatherService;
 
 

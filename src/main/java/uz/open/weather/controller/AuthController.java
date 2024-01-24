@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import uz.open.weather.dto.auth.AuthUser;
 import uz.open.weather.dto.auth.JwtAuthenticationResponse;
-import uz.open.weather.dto.user.WebUser;
+import uz.open.weather.model.user.WebUser;
 import uz.open.weather.service.AuthenticationService;
 
 

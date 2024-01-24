@@ -1,7 +1,7 @@
 package uz.open.weather.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import uz.open.weather.dto.user.WebUser;
+import uz.open.weather.model.user.WebUser;
 
 import java.util.Optional;
 

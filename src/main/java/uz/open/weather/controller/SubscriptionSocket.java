@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
-import uz.open.weather.dto.subscription.Subscription;
+import uz.open.weather.model.subscription.Subscription;
 import uz.open.weather.dto.subscription.SubscriptionsRequestDto;
 import uz.open.weather.service.SubscriptionService;
 

@@ -7,7 +7,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import uz.open.weather.dto.subscription.Subscription;
+import uz.open.weather.model.subscription.Subscription;
 import uz.open.weather.repository.SubscriptionRepository;
 import uz.open.weather.service.SubscriptionService;
 

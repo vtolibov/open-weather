@@ -7,7 +7,7 @@ import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import uz.open.weather.dto.user.WebUserRole;
+import uz.open.weather.model.user.WebUserRole;
 
 import java.util.Collection;
 import java.util.List;

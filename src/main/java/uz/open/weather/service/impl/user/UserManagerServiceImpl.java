@@ -3,7 +3,7 @@ package uz.open.weather.service.impl.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import uz.open.weather.dto.user.WebUser;
+import uz.open.weather.model.user.WebUser;
 import uz.open.weather.repository.WebUserRepository;
 import uz.open.weather.service.UserManagementService;
 

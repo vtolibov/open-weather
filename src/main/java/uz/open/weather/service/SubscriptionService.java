@@ -10,4 +10,6 @@ public interface SubscriptionService<T, ID> {
     void deleteSubscription(Long subscriptionId);
 
     Mono<T> subscribe(T body);
+
+    Mono<String> getSubscriptionInfoFromLocation(ID subscriptionId);
 }

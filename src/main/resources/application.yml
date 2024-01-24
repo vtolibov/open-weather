@@ -1,19 +1,17 @@
 server:
   port: 8585
-
 spring:
   liquibase:
     enabled: true
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform:
     hibernate:
       ddl-auto: none
-  datasource:
-    url: jdbc:h2:mem:spring-security
-    driver-class-name: org.h2.Driver
-    username: root
-    password: 12345
-
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/postgres?schema=open_weather
+    name: open_weather
+    username: open_weather
+    password: 123123weather
 jwt:
   token:
     signing:

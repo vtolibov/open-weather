@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import uz.open.weather.dto.auth.AuthUser;
 import uz.open.weather.dto.auth.JwtAuthenticationResponse;
-import uz.open.weather.model.user.WebUser;
+import uz.open.weather.dto.user.WebUserDto;
 import uz.open.weather.service.AuthenticationService;
 
 
@@ -19,7 +19,7 @@ public class AuthController {
     private final AuthenticationService authenticationService;
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<JwtAuthenticationResponse> signUp(@RequestBody WebUser request) {
+    public ResponseEntity<JwtAuthenticationResponse> signUp(@RequestBody WebUserDto request) {
         return ResponseEntity.ok(authenticationService.signUp(request));
     }
 

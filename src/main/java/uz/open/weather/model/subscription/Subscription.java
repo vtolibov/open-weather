@@ -2,6 +2,7 @@ package uz.open.weather.model.subscription;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,22 +31,21 @@ public class Subscription {
     @Column(name = "longitude")
     private Double lon;
     @Column(name = "location_name", length = 25)
-    private String name;
+    private String locationName;
     @Column(name = "status", length = 10)
     private SubscriptionStatuses status;
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Subscription{");
-        sb.append("id=").append(id);
-        sb.append(", userId=").append(userId);
-        sb.append(", locationId=").append(locationId);
-        sb.append(", lat=").append(lat);
-        sb.append(", lon=").append(lon);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", status=").append(status);
-        sb.append('}');
-        return sb.toString();
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("userId", userId)
+                .append("locationId", locationId)
+                .append("lat", lat)
+                .append("lon", lon)
+                .append("locationName", locationName)
+                .append("status", status)
+                .toString();
     }
 
     @Override
@@ -53,11 +53,11 @@ public class Subscription {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Subscription that = (Subscription) o;
-        return Objects.equals(id, that.id) && Objects.equals(userId, that.userId) && Objects.equals(locationId, that.locationId) && Objects.equals(lat, that.lat) && Objects.equals(lon, that.lon) && Objects.equals(name, that.name) && status == that.status;
+        return Objects.equals(id, that.id) && Objects.equals(userId, that.userId) && Objects.equals(locationId, that.locationId) && Objects.equals(lat, that.lat) && Objects.equals(lon, that.lon) && Objects.equals(locationName, that.locationName) && status == that.status;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, locationId, lat, lon, name, status);
+        return Objects.hash(id, userId, locationId, lat, lon, locationName, status);
     }
 }

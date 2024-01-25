@@ -7,9 +7,9 @@ public interface LocationService {
 
     <T> Flux<T> getAllLocations();
 
-    <T, S> Mono<T> saveLocation(S location);
+    <T, S> Mono<T> createLocation(S locationDto);
 
     <ID> void deleteLocation(ID id);
 
-    <T, S> Mono<T> changeLocation(S location);
+    <T> Mono<T> updateLocation(T locationDto);
 }

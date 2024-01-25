@@ -3,6 +3,7 @@ package uz.open.weather.model.user;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,33 +31,32 @@ public class WebUser {
     private String username;
 
     @Column(name = "first_name", length = 40)
-    private String firstName;
+    private String firstname;
 
     @Column(name = "last_name", length = 40)
-    private String lastName;
+    private String lastname;
 
     @Column(name = "password", length = 200)
     private String password;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", length = 70)
-    private uz.open.weather.model.user.WebUserRole role;
+    private WebUserRole role;
 
-    @Column(name = "status")
-    private Boolean status;
+    @Column(name = "is_active")
+    private Boolean isActive;
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("WebUser{");
-        sb.append("webUserId=").append(id);
-        sb.append(", username='").append(username).append('\'');
-        sb.append(", firstName='").append(firstName).append('\'');
-        sb.append(", lastName='").append(lastName).append('\'');
-        sb.append(", password='").append(password).append('\'');
-        sb.append(", role=").append(role);
-        sb.append(", status=").append(status);
-        sb.append('}');
-        return sb.toString();
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("username", username)
+                .append("firstName", firstname)
+                .append("lastName", lastname)
+                .append("password", password)
+                .append("role", role)
+                .append("isActive", isActive)
+                .toString();
     }
 
     @Override
@@ -64,12 +64,12 @@ public class WebUser {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         WebUser webUser = (WebUser) o;
-        return Objects.equals(id, webUser.id) && Objects.equals(username, webUser.username) && Objects.equals(firstName, webUser.firstName) && Objects.equals(lastName, webUser.lastName) && Objects.equals(password, webUser.password) && role == webUser.role && Objects.equals(status, webUser.status);
+        return Objects.equals(id, webUser.id) && Objects.equals(username, webUser.username) && Objects.equals(firstname, webUser.firstname) && Objects.equals(lastname, webUser.lastname) && Objects.equals(password, webUser.password) && role == webUser.role && Objects.equals(isActive, webUser.isActive);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, firstName, lastName, password, role, status);
+        return Objects.hash(id, username, firstname, lastname, password, role, isActive);
     }
 }
 

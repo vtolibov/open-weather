@@ -3,6 +3,7 @@ package uz.open.weather.model.weather;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,17 +35,17 @@ public class Weather {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Weather{");
-        sb.append("id=").append(id);
-        sb.append(", timezone='").append(timezone).append('\'');
-        sb.append(", lat=").append(lat);
-        sb.append(", lon=").append(lon);
-        sb.append(", weatherDegree=").append(weatherDegree);
-        sb.append(", description='").append(description).append('\'');
-        sb.append(", timestamp=").append(timestamp);
-        sb.append('}');
-        return sb.toString();
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("timezone", timezone)
+                .append("lat", lat)
+                .append("lon", lon)
+                .append("weatherDegree", weatherDegree)
+                .append("description", description)
+                .append("timestamp", timestamp)
+                .toString();
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -2,6 +2,7 @@ package uz.open.weather.model.location;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,13 +29,12 @@ public class Location {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Location{");
-        sb.append("id=").append(id);
-        sb.append(", locationName='").append(locationName).append('\'');
-        sb.append(", lat=").append(lat);
-        sb.append(", lon=").append(lon);
-        sb.append('}');
-        return sb.toString();
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("locationName", locationName)
+                .append("lat", lat)
+                .append("lon", lon)
+                .toString();
     }
 
     @Override

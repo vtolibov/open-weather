@@ -3,10 +3,11 @@ package uz.open.weather.service.impl.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import uz.open.weather.dto.auth.AuthUser;
 import uz.open.weather.dto.auth.JwtAuthenticationResponse;
+import uz.open.weather.dto.user.WebUserDto;
+import uz.open.weather.mapper.user.WebUserMapper;
 import uz.open.weather.model.user.WebUser;
 import uz.open.weather.repository.WebUserRepository;
 import uz.open.weather.service.AuthenticationService;
@@ -16,22 +17,19 @@ import uz.open.weather.service.JwtService;
 @RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final WebUserRepository webUserRepository;
-    private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final WebUserMapper webUserMapper;
 
     @Override
-    public JwtAuthenticationResponse signUp(WebUser request) {
-        WebUser user = new WebUser()
-                .setUsername(request.getUsername())
-                .setPassword(passwordEncoder.encode(request.getPassword()))
-                .setRole(request.getRole());
-        webUserRepository.save(user);
+    public JwtAuthenticationResponse signUp(WebUserDto request) {
+        WebUser webUser = webUserMapper.webUserDtoToEntity(request);
 
+        webUserRepository.save(webUser);
         AuthUser authUser = new AuthUser()
                 .setUsername(request.getUsername())
                 .setPassword(request.getPassword())
-                .setRole(user.getRole());
+                .setRole(webUser.getRole());
         var jwt = jwtService.generateToken(authUser);
         return new JwtAuthenticationResponse(jwt);
     }

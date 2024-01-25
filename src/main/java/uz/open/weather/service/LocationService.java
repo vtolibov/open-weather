@@ -12,4 +12,6 @@ public interface LocationService {
     <ID> void deleteLocation(ID id);
 
     <T> Mono<T> updateLocation(T locationDto);
+
+    <T, ID>Mono<T> getLocation(ID locationId);
 }

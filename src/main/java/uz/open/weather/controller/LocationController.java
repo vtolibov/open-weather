@@ -23,7 +23,6 @@ public class LocationController {
     public ResponseEntity<Flux<LocationDto>> getAllLocations() {
         Flux<LocationDto> allLocations = locationService.getAllLocations();
         return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_JSON)
                 .body(allLocations);
     }
 
@@ -31,7 +30,6 @@ public class LocationController {
     public ResponseEntity<Mono<LocationDto>> createLocation(@RequestBody LocationDto locationDto) {
         Mono<LocationDto> location = locationService.createLocation(locationDto);
         return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_JSON)
                 .body(location);
     }
 
@@ -39,7 +37,6 @@ public class LocationController {
     public ResponseEntity<Mono<LocationDto>> updateLocation(@RequestBody LocationDto locationDto) {
         Mono<LocationDto> location = locationService.updateLocation(locationDto);
         return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_JSON)
                 .body(location);
     }
 
@@ -47,5 +44,11 @@ public class LocationController {
     public ResponseEntity<Mono<LocationDto>> deleteLocation(@PathVariable Long locationId) {
         locationService.deleteLocation(locationId);
         return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(value = "/get_location/{locationId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Mono<LocationDto>> getLocation(@PathVariable Long locationId) {
+        return ResponseEntity.ok()
+                .body(locationService.getLocation(locationId));
     }
 }

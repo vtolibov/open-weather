@@ -1,18 +1,20 @@
 package uz.open.weather.service;
 
 
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 
 public interface UserManagementService<T, ID> {
 
-    List<T> getAllUsers();
+    Flux<T> getAllUsers();
 
-    T createUser(T user);
+    Mono<T> createUser(T user);
 
-    T updateUser(T user);
+    Mono<T> updateUser(T user);
 
     void deleteUser(ID id);
 
-    T getUser(ID id);
+    Mono<T> getUser(ID id);
 
 }

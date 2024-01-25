@@ -46,4 +46,11 @@ public class LocationServiceImpl implements LocationService {
                 .map(locationMapper::locationEntityToLocationDto)
                 .map(dto -> (T) dto);
     }
+
+    @Override
+    public <T, ID> Mono<T> getLocation(ID locationId) {
+        Mono<Location> location = locationRepository.findById((Long) locationId);
+        return location.map(locationMapper::locationEntityToLocationDto)
+                .map(locationDto -> (T) locationDto);
+    }
 }

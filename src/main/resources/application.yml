@@ -12,6 +12,10 @@ spring:
     name: open_weather
     username: open_weather
     password: 123123weather
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
 jwt:
   token:
     signing:
@@ -23,3 +27,8 @@ open:
     version: /data/3.0
     ext: /onecall
     api-key: ask_me_or_get_own_from_openweathermap.org
+
+springdoc:
+  swagger-ui:
+      defaultModelsExpandDepth: 1
+      showExtensions: false

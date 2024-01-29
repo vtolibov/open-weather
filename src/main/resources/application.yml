@@ -12,9 +12,8 @@ spring:
     name: open_weather
     username: open_weather
     password: 123123weather
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+  security:
+
 
 logging:
   level:
@@ -30,7 +29,7 @@ logging:
 jwt:
   token:
     signing:
-      key: open-weather
+        key: open-weather
 
 open:
   weather:
@@ -43,3 +42,4 @@ springdoc:
   swagger-ui:
     defaultModelsExpandDepth: 1
     showExtensions: false
+    path: /swagger-ui.html

@@ -1,8 +1,6 @@
 package uz.open.weather.service.impl.user;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 import uz.open.weather.dto.auth.AuthUser;
 import uz.open.weather.dto.auth.JwtAuthenticationResponse;
@@ -20,7 +18,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtService jwtService;
     private final WebUserMapper webUserMapper;
     private final WebUserRepository webUserRepository;
-//    private final AuthenticationManager authenticationManager;
 
     @Override
     public JwtAuthenticationResponse signUp(WebUserDto request) {
@@ -37,8 +34,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JwtAuthenticationResponse signIn(AuthUser request) {
-//        authenticationManager.authenticate(
-//                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         var user = webUserRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid username or password"));
         AuthUser authUser = new AuthUser()

@@ -22,8 +22,8 @@ public class DocConfig {
     @Bean
     public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("RAILWAY TICKET ORDER AND PAYMENT")
-                .description("Book and pay for railway tickets")
+                .title("OPEN WEATHER")
+                .description("Using this app you can get information about weather")
                 .license("vakhobjon.tolibov@paynet.uz")
                 .version("1.0")
                 .build();

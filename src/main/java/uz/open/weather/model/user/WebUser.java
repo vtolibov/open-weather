@@ -3,47 +3,39 @@ package uz.open.weather.model.user;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Objects;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
 @Setter
-@Entity
 @Table(name = "web_user")
 @Accessors(chain = true)
 public class WebUser {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column("id")
     private Long id;
 
-    @Column(name = "username", length = 150)
+    @Column("username")
     private String username;
 
-    @Column(name = "first_name", length = 40)
+    @Column("first_name")
     private String firstname;
 
-    @Column(name = "last_name", length = 40)
+    @Column("last_name")
     private String lastname;
 
-    @Column(name = "password", length = 200)
+    @Column("password")
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", length = 70)
+    @Column("role")
     private WebUserRole role;
 
-    @Column(name = "is_active")
+    @Column("is_active")
     private Boolean isActive;
 
     @Override
@@ -64,12 +56,12 @@ public class WebUser {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         WebUser webUser = (WebUser) o;
-        return Objects.equals(id, webUser.id) && Objects.equals(username, webUser.username) && Objects.equals(firstname, webUser.firstname) && Objects.equals(lastname, webUser.lastname) && Objects.equals(password, webUser.password) && role == webUser.role && Objects.equals(isActive, webUser.isActive);
+        return new EqualsBuilder().append(id, webUser.id).append(username, webUser.username).append(firstname, webUser.firstname).append(lastname, webUser.lastname).append(password, webUser.password).append(role, webUser.role).append(isActive, webUser.isActive).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, firstname, lastname, password, role, isActive);
+        return new HashCodeBuilder(17, 37).append(id).append(username).append(firstname).append(lastname).append(password).append(role).append(isActive).toHashCode();
     }
 }
 

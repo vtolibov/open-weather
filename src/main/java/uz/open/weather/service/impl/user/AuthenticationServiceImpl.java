@@ -13,13 +13,14 @@ import uz.open.weather.repository.WebUserRepository;
 import uz.open.weather.service.AuthenticationService;
 import uz.open.weather.service.JwtService;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class AuthenticationServiceImpl implements AuthenticationService {
-    private final WebUserRepository webUserRepository;
+
     private final JwtService jwtService;
-    private final AuthenticationManager authenticationManager;
     private final WebUserMapper webUserMapper;
+    private final WebUserRepository webUserRepository;
+//    private final AuthenticationManager authenticationManager;
 
     @Override
     public JwtAuthenticationResponse signUp(WebUserDto request) {
@@ -36,10 +37,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JwtAuthenticationResponse signIn(AuthUser request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+//        authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         var user = webUserRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid username or password"));
         AuthUser authUser = new AuthUser()
                 .setUsername(request.getUsername())
                 .setPassword(request.getPassword())

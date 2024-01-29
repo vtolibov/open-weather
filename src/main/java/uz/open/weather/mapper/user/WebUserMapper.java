@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 import uz.open.weather.dto.user.WebUserDto;
 import uz.open.weather.model.user.WebUser;
 
-@Mapper
 @Component
+@Mapper(componentModel = "spring")
 public interface WebUserMapper {
 
     @Mapping(target = "id", source = "userId", ignore = true)

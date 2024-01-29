@@ -5,35 +5,29 @@ import lombok.Setter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
 @Setter
-@Entity
 @Table(name = "subscription")
 public class Subscription {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column("id")
     private Long id;
-    @Column(name = "user_id")
+    @Column("user_id")
     private Long userId;
-    @Column(name = "location_id")
+    @Column("location_id")
     private Long locationId;
-    @Column(name = "latitude")
+    @Column("latitude")
     private Double lat;
-    @Column(name = "longitude")
+    @Column("longitude")
     private Double lon;
-    @Column(name = "location_name", length = 25)
+    @Column("location_name")
     private String locationName;
-    @Column(name = "is_subscribed", length = 10)
+    @Column("is_subscribed")
     private SubscriptionStatuses isSubscribed;
 
     @Override

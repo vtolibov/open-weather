@@ -2,32 +2,29 @@ package uz.open.weather.model.location;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
 @Setter
-@Entity
+@Accessors(chain = true)
 @Table(name = "location")
 public class Location {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column("id")
     private Long id;
-    @Column(name = "location_name", length = 25)
+    @Column("location_name")
     private String locationName;
-    @Column(name = "latitude")
+    @Column("latitude")
     private Double lat;
-    @Column(name = "longitude")
+    @Column("longitude")
     private Double lon;
-    @Column(name = "is_available")
+    @Column("is_available")
     private Boolean isAvailable;
 
     @Override

@@ -4,12 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Getter
 @Setter
@@ -17,20 +14,19 @@ import javax.persistence.Table;
 @Accessors(chain = true)
 public class Weather {
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column("id")
     private Long id;
-    @Column(name = "timezone", length = 20)
+    @Column("timezone")
     private String timezone;
-    @Column(name = "latitude", length = 20)
+    @Column("latitude")
     private Double lat;
-    @Column(name = "longitude", length = 20)
+    @Column("longitude")
     private Double lon;
-    @Column(name = "weather_degree", length = 20)
+    @Column("weather_degree")
     private Double weatherDegree;
-    @Column(name = "description", length = 30)
+    @Column("description")
     private String description;
-    @Column(name = "date_time", length = 30)
+    @Column("date_time")
     private Long timestamp;
 
     @Override

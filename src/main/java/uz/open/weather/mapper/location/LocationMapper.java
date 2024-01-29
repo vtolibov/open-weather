@@ -7,18 +7,18 @@ import uz.open.weather.dto.location.LocationDto;
 import uz.open.weather.model.location.Location;
 
 @Component
-@Mapper
+@Mapper(componentModel = "spring")
 public interface LocationMapper {
 
     @Mapping(target = "id", source = "locationId", ignore = true)
     @Mapping(target = "locationName", source = "locationName")
     @Mapping(target = "latitude", source = "latitude")
     @Mapping(target = "longitude", source = "longitude")
-    Location locationDtoToLocationEntity(LocationDto webUser);
+    Location locationDtoToLocationEntity(LocationDto locationDto);
 
     @Mapping(target = "userId", source = "id", ignore = true)
     @Mapping(target = "locationName", source = "locationName")
     @Mapping(target = "latitude", source = "latitude")
     @Mapping(target = "longitude", source = "longitude")
-    LocationDto locationEntityToLocationDto(Location webUserDto);
+    LocationDto locationEntityToLocationDto(Location locationEntity);
 }

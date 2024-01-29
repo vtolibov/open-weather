@@ -3,10 +3,12 @@ package uz.open.weather.dto.user;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 import uz.open.weather.model.user.WebUserRole;
 
 @Getter
 @Setter
+@Accessors(chain = true)
 public class WebUserDto {
     @JsonProperty(value = "user_id")
     private Long userId;

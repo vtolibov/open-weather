@@ -16,6 +16,17 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
+logging:
+  level:
+    uz: INFO
+  file:
+    path: log/
+    name: log/open_weather.log
+  level.uz:
+    paynet: INFO
+  pattern:
+    dateformat: [dd MM yyyy HH:mm:ss,SSS]
+    file: "[%d{dd-MM-yyyy HH:mm:ss:ss,SSS}] [%thread] %-5level %logger{36} - %msg%n"
 jwt:
   token:
     signing:
@@ -30,5 +41,5 @@ open:
 
 springdoc:
   swagger-ui:
-      defaultModelsExpandDepth: 1
-      showExtensions: false
+    defaultModelsExpandDepth: 1
+    showExtensions: false

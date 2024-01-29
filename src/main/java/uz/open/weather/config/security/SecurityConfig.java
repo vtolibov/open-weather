@@ -15,7 +15,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import uz.open.weather.model.user.WebUserRole;
 import uz.open.weather.service.WebUserService;
+
 
 @Configuration
 @EnableWebSecurity
@@ -24,30 +26,40 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final WebUserService webUserService;
 
+    private static final String LOCATION_CREATE = "/api/v1/locations/create";
+    private static final String LOCATION_UPDATE = "/api/v1/locations/update";
+    private static final String LOCATION_DELETE = "/api/v1/locations/delete/**";
+    private static final String USER_CREATE = "/api/v1/users/create_user";
+    private static final String USER_UPDATE = "/api/v1/users/update_user";
+    private static final String USER_DELETE = "/api/v1/users/delete_user/**";
+    private static final String USER_GET = "/api/v1/users/get_user/**";
+    private static final String USER_GET_ALL = "/api/v1/users/get_all";
+
+
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
         return http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
                 .and()
                 .csrf().disable()
-                // dont authenticate this particular request
-                .authorizeRequests().antMatchers("/api/authenticate").permitAll()
-                //registration requests does not require auth
-                .antMatchers("/api/register/download/**").permitAll().
-                        antMatchers("/v2/api-docs",
-                                "/webjars/**").permitAll()
+                .authorizeRequests()
                 .antMatchers(
-                        "/internal/**",
-                        "/swagger-ui.html"
-                ).permitAll()
-                // all other requests need to be authenticated
+                        LOCATION_CREATE,
+                        LOCATION_UPDATE,
+                        LOCATION_DELETE,
+                        USER_CREATE,
+                        USER_UPDATE,
+                        USER_DELETE,
+                        USER_GET,
+                        USER_GET_ALL
+                ).hasRole(WebUserRole.ADMINISTRATOR.name())
+                .antMatchers("/subscription/create")
+                .hasRole(WebUserRole.USER.name())
                 .anyRequest().authenticated()
+                .antMatchers("/api/v1/locations/get_all", "/api/v1/locations/get_location/**", "/swagger-ui.html").permitAll()
                 .and()
-                // make sure we use stateless session; session won't be used to
-                // store user's state.
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider()).addFilterBefore(
-                        jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .authenticationProvider(authenticationProvider()).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

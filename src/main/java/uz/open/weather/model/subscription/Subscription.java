@@ -2,6 +2,8 @@ package uz.open.weather.model.subscription;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Column;
@@ -10,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -32,8 +33,8 @@ public class Subscription {
     private Double lon;
     @Column(name = "location_name", length = 25)
     private String locationName;
-    @Column(name = "status", length = 10)
-    private SubscriptionStatuses status;
+    @Column(name = "is_subscribed", length = 10)
+    private SubscriptionStatuses isSubscribed;
 
     @Override
     public String toString() {
@@ -44,7 +45,7 @@ public class Subscription {
                 .append("lat", lat)
                 .append("lon", lon)
                 .append("locationName", locationName)
-                .append("status", status)
+                .append("status", isSubscribed)
                 .toString();
     }
 
@@ -53,11 +54,11 @@ public class Subscription {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Subscription that = (Subscription) o;
-        return Objects.equals(id, that.id) && Objects.equals(userId, that.userId) && Objects.equals(locationId, that.locationId) && Objects.equals(lat, that.lat) && Objects.equals(lon, that.lon) && Objects.equals(locationName, that.locationName) && status == that.status;
+        return new EqualsBuilder().append(id, that.id).append(userId, that.userId).append(locationId, that.locationId).append(lat, that.lat).append(lon, that.lon).append(locationName, that.locationName).append(isSubscribed, that.isSubscribed).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, locationId, lat, lon, locationName, status);
+        return new HashCodeBuilder(17, 37).append(id).append(userId).append(locationId).append(lat).append(lon).append(locationName).append(isSubscribed).toHashCode();
     }
 }
